@@ -50,8 +50,9 @@ int main()
 	unsigned char *data = new unsigned char[domainWidth * domainHeight * 3];
 	std::memset(data, 0, domainWidth * domainHeight * 3 * sizeof(unsigned char));
 
+	std::complex<double> c(0.285, 0.013);
 	std::complex<double> K(0.353, 0.288);
-	std::complex<double> center(-1.68, -1.23);
+	std::complex<double> center(-1.23, -1.23);
 	double scale = 2.35;
 
 	const unsigned int maxIterations = 100;
@@ -61,10 +62,10 @@ int main()
 	{
 		for (unsigned int x = 0; x < domainWidth; ++x)
 		{
-			std::complex<double> c(x / (double)domainWidth * scale + center.real(),
+			std::complex<double> z(x / (double)domainWidth * scale + center.real(),
 				y / (double)domainHeight * scale + center.imag());
 
-			std::complex<double> z(c);
+			//std::complex<double> z(c);
 			for (unsigned int iteration = 0; iteration < maxIterations; ++iteration)
 			{
 				z = z * z + c;
@@ -78,7 +79,7 @@ int main()
 		}
 	}
 
-	WriteTGA_RGB("mandelbrot.tga", data, domainWidth, domainHeight);
+	WriteTGA_RGB("julia.tga", data, domainWidth, domainHeight);
 	delete[] data;
 	return 0;
 }
