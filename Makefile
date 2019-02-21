@@ -1,2 +1,2 @@
-all: Fractal.cpp
-	g++ -fopenmp -o fractal Fractal.cpp
+all: julia.cpp
+	mpicxx -O3  julia.cpp -o julia
